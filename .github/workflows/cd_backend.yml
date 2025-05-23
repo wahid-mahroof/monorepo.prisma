@@ -25,4 +25,4 @@ on:
        context: .
        file: ./docker/Dockerfile.backend
        push: true
-       tags: 100xdevs/user-app-backend:${{github.sha}}
+       tags: 100xdevs/todo-app-user-app-backend:${{github.sha}}
