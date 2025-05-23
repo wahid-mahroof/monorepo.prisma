@@ -1,0 +1,28 @@
+## build the docker image
+## push the docker image to docker hub'
+## SSH into our VM and start the new image
+
+name: deploy the backed
+on:
+   push: 
+       branches:[main]
+       jobs:
+       build:
+       runsout: ubuntu-latest
+       steps:
+       - name: checkout the code
+       uses:actions/checkout@v2
+
+       -name:Docker login
+       uses: docker/login-actions@v2
+       with:
+       username: ${{secret.DOCKERHUB_USERNAME}}
+       password: ${{secret.DOKERHUB_TOKEN}}
+
+       -name: Build and push
+       uses: docker/build-push-action@v4
+       with:
+       context: .
+       file: ./docker/Dockerfile.backend
+       push: true
+       tags: 100xdevs/user-app-backend:${{github.sha}}
